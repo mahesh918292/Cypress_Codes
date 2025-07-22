@@ -1,3 +1,5 @@
+import 'cypress-file-upload';
+
 describe('Tests', () => {
 
   // Handle known cross-origin script errors without failing the test
@@ -63,5 +65,21 @@ describe('Tests', () => {
     // Click it again (maybe toggling it off or testing behavior)
     cy.get('label[for="tree-node-home"]').click();
   });
+  it('Alerts',()=>{
+    cy.visit('https://demoqa.com/buttons')
+    cy.get('#doubleClickBtn').dblclick()
+    cy.get('#doubleClickMessage').then(($el)=>{
+      if($el.text()=="You have done a double click")
+        alert("Success")
+      else 
+        alert('Failure')
+    })
+  })
+  it('FIles Upload',()=>{
+    cy.visit('https://demoqa.com/upload-download')
+    cy.get('#uploadFile').attachFile('1.html')
+   
 
+  })
+  
 });
